@@ -10,6 +10,8 @@ public class CameraSwitcher : MonoBehaviour
 
     private ArrowCameraMovement arrowCameraMovement;
 
+    private bool spacePressed = false;
+
     void Start()
     {
         mainCamera.enabled = true;
@@ -22,14 +24,16 @@ public class CameraSwitcher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !spacePressed) // Check the flag here
         {
             mainCamera.enabled = !mainCamera.enabled;
             secondCamera.enabled = !secondCamera.enabled;
 
-            // Start the movement fuction for the arrow
+            // Start the movement function for the arrow
             arrowMovement.StartMovingForward();
             arrowCameraMovement.StartMovingForward();
+
+            spacePressed = true; // Set the flag to true after the space bar is pressed
         }
     }
 }

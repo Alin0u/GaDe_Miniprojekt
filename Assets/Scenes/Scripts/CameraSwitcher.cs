@@ -8,8 +8,6 @@ public class CameraSwitcher : MonoBehaviour
     public Camera secondCamera;
     private ArrowMovement arrowMovement;
 
-    private ArrowCameraMovement arrowCameraMovement;
-
     void Start()
     {
         mainCamera.enabled = true;
@@ -17,7 +15,6 @@ public class CameraSwitcher : MonoBehaviour
 
         // Find the arrow-object
         arrowMovement = FindObjectOfType<ArrowMovement>();
-        arrowCameraMovement = FindObjectOfType<ArrowCameraMovement>();
     }
 
     void Update()
@@ -29,7 +26,6 @@ public class CameraSwitcher : MonoBehaviour
 
             // Start the movement fuction for the arrow
             arrowMovement.StartMovingForward();
-            arrowCameraMovement.StartMovingForward();
         }
     }
 }

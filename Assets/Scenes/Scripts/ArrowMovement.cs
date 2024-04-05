@@ -10,6 +10,7 @@ public class ArrowMovement : MonoBehaviour
     public TextMeshProUGUI hitText;
 
     private bool isMovingForward = false;
+    private bool canMove = true;
 
     private void Start()
     {
@@ -18,6 +19,9 @@ public class ArrowMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove)
+            return;
+
         float moveHorizontal = Input.GetAxis("Horizontal") * strafeSpeed * Time.deltaTime;
         float moveVertical = Input.GetAxis("Vertical") * strafeSpeed * Time.deltaTime;
 
@@ -44,6 +48,7 @@ public class ArrowMovement : MonoBehaviour
             {
                 speed = 0f;
                 hitText.gameObject.SetActive(true);
+                canMove = false;
             }
         }
     }

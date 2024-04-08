@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   strafeSpeed: 5
-  boostMultiplier: 10
+  boostMultiplier: 2
   hitText: {fileID: 6998008805689614943, guid: 2c3766a1f9f46d4f9824985ec5566995, type: 3}
 --- !u!54 &8608363881983323560
 Rigidbody:

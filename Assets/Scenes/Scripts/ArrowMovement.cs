@@ -9,6 +9,7 @@ public class ArrowMovement : MonoBehaviour
     public float speed = 5.0f;
     public float strafeSpeed = 5.0f;
     public float boostMultiplier = 10.0f;
+    private float speedMultiplier = 1f;
     public TextMeshProUGUI hitText;
 
     private bool isMovingForward = false;
@@ -21,8 +22,8 @@ public class ArrowMovement : MonoBehaviour
 
     private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal") * strafeSpeed * Time.deltaTime;
-        float moveVertical = Input.GetAxis("Vertical") * strafeSpeed * Time.deltaTime;
+        float moveHorizontal = Input.GetAxis("Horizontal") * strafeSpeed * speedMultiplier * Time.deltaTime;
+        float moveVertical = Input.GetAxis("Vertical") * strafeSpeed * speedMultiplier * Time.deltaTime;
 
         // Move the arrow left and right, up and down
         transform.Translate(moveHorizontal, moveVertical, 0);
@@ -61,5 +62,10 @@ public class ArrowMovement : MonoBehaviour
                 hitText.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        speedMultiplier = multiplier;
     }
 }

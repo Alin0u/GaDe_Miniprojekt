@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
+    public GameObject gameObject;
+    public AnimationClip animationClip;
     public float speed = 5.0f;
     public float strafeSpeed = 5.0f;
     public float boostMultiplier = 10.0f;
@@ -17,7 +19,7 @@ public class ArrowMovement : MonoBehaviour
 
     private void Start()
     {
-        if(hitText != null) hitText.gameObject.SetActive(false);
+        if (hitText != null) hitText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -29,7 +31,7 @@ public class ArrowMovement : MonoBehaviour
         transform.Translate(moveHorizontal, moveVertical, 0);
 
         // Arrow starts moving when second camera will be entered
-        if(isBoosting)
+        if (isBoosting)
         {
             // Increase the forward movement speed
             transform.Translate(0, 0, speed * boostMultiplier * Time.deltaTime);
@@ -52,9 +54,9 @@ public class ArrowMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Target")
+        if (other.gameObject.tag == "Target")
         {
-            if(hitText != null)
+            if (hitText != null)
             {
                 speed = 0f;
                 isMovingForward = false;

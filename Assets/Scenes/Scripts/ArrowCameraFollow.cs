@@ -7,6 +7,6 @@ public class ArrowCameraFollow : MonoBehaviour
     public Transform arrow;
 
     void LateUpdate () {
-        transform.position = arrow.transform.position + new Vector3(2f, 1f, -4f);
+        transform.position = arrow.transform.position + new Vector3(1.75f, 1f, -4f);
     }
 }

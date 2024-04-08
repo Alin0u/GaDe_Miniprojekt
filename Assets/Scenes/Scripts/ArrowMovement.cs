@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
     public float speed = 5.0f;
     public float strafeSpeed = 5.0f;
+    public float boostMultiplier = 10.0f;
     public TextMeshProUGUI hitText;
 
     private bool isMovingForward = false;
-    private bool canMove = true;
+    private bool isBoosting = false;
 
     private void Start()
     {
@@ -19,9 +21,6 @@ public class ArrowMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!canMove)
-            return;
-
         float moveHorizontal = Input.GetAxis("Horizontal") * strafeSpeed * Time.deltaTime;
         float moveVertical = Input.GetAxis("Vertical") * strafeSpeed * Time.deltaTime;
 
@@ -29,7 +28,12 @@ public class ArrowMovement : MonoBehaviour
         transform.Translate(moveHorizontal, moveVertical, 0);
 
         // Arrow starts moving when second camera will be entered
-        if (isMovingForward)
+        if(isBoosting)
+        {
+            // Increase the forward movement speed
+            transform.Translate(0, 0, speed * boostMultiplier * Time.deltaTime);
+        }
+        else if (isMovingForward)
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
         }
@@ -40,6 +44,11 @@ public class ArrowMovement : MonoBehaviour
         isMovingForward = true;
     }
 
+    public void OnBoost(InputValue value)
+    {
+        isBoosting = value.isPressed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Target")
@@ -47,8 +56,9 @@ public class ArrowMovement : MonoBehaviour
             if(hitText != null)
             {
                 speed = 0f;
+                isMovingForward = false;
+                isBoosting = false;
                 hitText.gameObject.SetActive(true);
-                canMove = false;
             }
         }
     }

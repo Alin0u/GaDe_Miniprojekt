@@ -58,6 +58,7 @@ public class ArrowMovement : MonoBehaviour
         {
             if (hitText != null)
             {
+                gameObject.GetComponent<Animator>().enabled = false;
                 speed = 0f;
                 isMovingForward = false;
                 isBoosting = false;

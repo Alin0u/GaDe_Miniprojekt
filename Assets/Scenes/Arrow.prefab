@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 23
+  m_VersionIndex: 11
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1281,7 +1281,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1299,6 +1299,7 @@ GameObject:
   - component: {fileID: 8044037267279478023}
   - component: {fileID: 8608363881983323560}
   - component: {fileID: 3843029841195424622}
+  - component: {fileID: 2974215057789948297}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -1336,6 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   strafeSpeed: 5
+  boostMultiplier: 2
   hitText: {fileID: 6998008805689614943, guid: 2c3766a1f9f46d4f9824985ec5566995, type: 3}
 --- !u!54 &8608363881983323560
 Rigidbody:
@@ -1385,3 +1387,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2974215057789948297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739519253615692660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ac1e0dddcb8b1903396fe922c682ad34, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Arrow
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

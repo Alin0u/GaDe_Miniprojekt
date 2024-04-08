@@ -7,9 +7,7 @@ public class CameraSwitcher : MonoBehaviour
     public Camera mainCamera;
     public Camera secondCamera;
     private ArrowMovement arrowMovement;
-
-    private ArrowCameraMovement arrowCameraMovement;
-
+    private TargetArrowBarMovement targetArrowBarMovement;
     private bool spacePressed = false;
 
     void Start()
@@ -19,21 +17,42 @@ public class CameraSwitcher : MonoBehaviour
 
         // Find the arrow-object
         arrowMovement = FindObjectOfType<ArrowMovement>();
-        arrowCameraMovement = FindObjectOfType<ArrowCameraMovement>();
+        targetArrowBarMovement = FindObjectOfType<TargetArrowBarMovement>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !spacePressed) // Check the flag here
+        if (Input.GetKeyDown(KeyCode.Space) && !spacePressed)
         {
             mainCamera.enabled = !mainCamera.enabled;
             secondCamera.enabled = !secondCamera.enabled;
 
-            // Start the movement function for the arrow
-            arrowMovement.StartMovingForward();
-            arrowCameraMovement.StartMovingForward();
-
             spacePressed = true; // Set the flag to true after the space bar is pressed
+            // Calculate the arrow's position relative to the movement range
+            float relativePosition = (targetArrowBarMovement.transform.position.x - targetArrowBarMovement.startingPosition.x) / targetArrowBarMovement.movementDistance;
+
+            float speedMultiplier;
+            if(relativePosition <= 0.3f)
+            {
+                speedMultiplier = 0.3f;
+            }
+            else if(relativePosition > 0.3f && relativePosition <= 0.7f)
+            {
+                speedMultiplier = 1f;
+            }
+            else
+            {
+                speedMultiplier = 0.3f;
+            }
+
+            // Set the functionality in percentage of how good the keys (up, down, right, left) work
+            arrowMovement.SetSpeedMultiplier(speedMultiplier);
+
+            // Start the movement fuction for the arrow
+            arrowMovement.StartMovingForward();
+
+            // Output for debugging & presentation
+            Debug.Log("Speed: " + speedMultiplier);
         }
     }
 }

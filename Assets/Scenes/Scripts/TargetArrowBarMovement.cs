@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TargetArrowBarMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 1.0f;
     public float movementDistance = 10.0f;
-    private Vector3 startingPosition;
+    public Vector3 startingPosition;
 
     void Start()
     {

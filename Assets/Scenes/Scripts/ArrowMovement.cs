@@ -16,6 +16,7 @@ public class ArrowMovement : MonoBehaviour
 
     private bool isMovingForward = false;
     private bool isBoosting = false;
+    private bool canMove = true;
 
     private void Start()
     {
@@ -24,6 +25,9 @@ public class ArrowMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove)
+            return;
+        
         float moveHorizontal = Input.GetAxis("Horizontal") * strafeSpeed * speedMultiplier * Time.deltaTime;
         float moveVertical = Input.GetAxis("Vertical") * strafeSpeed * speedMultiplier * Time.deltaTime;
 
@@ -59,6 +63,8 @@ public class ArrowMovement : MonoBehaviour
             if (hitText != null)
             {
                 gameObject.GetComponent<Animator>().enabled = false;
+
+                canMove = false;
                 speed = 0f;
                 isMovingForward = false;
                 isBoosting = false;

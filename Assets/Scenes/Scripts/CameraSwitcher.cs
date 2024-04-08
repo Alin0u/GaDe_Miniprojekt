@@ -8,6 +8,7 @@ public class CameraSwitcher : MonoBehaviour
     public Camera secondCamera;
     private ArrowMovement arrowMovement;
     private TargetArrowBarMovement targetArrowBarMovement;
+    private bool spacePressed = false;
 
     void Start()
     {
@@ -21,11 +22,12 @@ public class CameraSwitcher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !spacePressed)
         {
             mainCamera.enabled = !mainCamera.enabled;
             secondCamera.enabled = !secondCamera.enabled;
 
+            spacePressed = true; // Set the flag to true after the space bar is pressed
             // Calculate the arrow's position relative to the movement range
             float relativePosition = (targetArrowBarMovement.transform.position.x - targetArrowBarMovement.startingPosition.x) / targetArrowBarMovement.movementDistance;
 

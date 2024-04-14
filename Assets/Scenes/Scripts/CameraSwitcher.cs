@@ -50,9 +50,6 @@ public class CameraSwitcher : MonoBehaviour
 
             // Start the movement fuction for the arrow
             arrowMovement.StartMovingForward();
-
-            // Output for debugging & presentation
-            Debug.Log("Speed: " + speedMultiplier);
         }
     }
 }

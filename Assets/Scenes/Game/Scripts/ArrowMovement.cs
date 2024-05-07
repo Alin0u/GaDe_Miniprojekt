@@ -15,10 +15,12 @@ public class ArrowMovement : MonoBehaviour
     private float speedMultiplier = 1f;
     public TextMeshProUGUI hitText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI instructionText;
 
     private bool isMovingForward = false;
     private bool isBoosting = false;
     private bool canMove = false;
+    private bool gameOver = false;
 
     private Vector3 currentRotation = Vector3.zero;
 
@@ -26,6 +28,7 @@ public class ArrowMovement : MonoBehaviour
     {
         if (hitText != null) hitText.gameObject.SetActive(false);
         if (gameOverText != null) gameOverText.gameObject.SetActive(false);
+        if (instructionText != null) instructionText.gameObject.SetActive(false);
         arrow.GetComponent<Animator>().enabled = false;
     }
 
@@ -34,6 +37,14 @@ public class ArrowMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
+        if (gameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
 
         if (!canMove)
@@ -99,15 +110,13 @@ public class ArrowMovement : MonoBehaviour
         else if (other.gameObject.tag == "environment")
         {
             gameOverText.gameObject.SetActive(true);
+            instructionText.gameObject.SetActive(true);
             arrow.GetComponent<Animator>().enabled = false;
             canMove = false;
             speed = 0f;
             isMovingForward = false;
             isBoosting = false;
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            gameOver = true;
         }
     }
 

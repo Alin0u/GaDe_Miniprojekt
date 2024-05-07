@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class MusicPlayer : MonoBehaviour
+public class MusicPlayerMenu : MonoBehaviour
 {
     public AudioSource menuSource;
+    private string filePath;
 
     private float musicVolume = 1f;
+
+    void Start()
+    {
+        filePath = Application.persistentDataPath + "/volume.txt";
+    }
 
     void Update()
     {
@@ -16,5 +23,6 @@ public class MusicPlayer : MonoBehaviour
     public void updateVolume(float volume)
     {
         musicVolume = volume;
+        File.WriteAllText(filePath, musicVolume.ToString());
     }
 }

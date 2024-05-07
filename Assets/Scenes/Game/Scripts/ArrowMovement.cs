@@ -14,6 +14,7 @@ public class ArrowMovement : MonoBehaviour
     public float boostMultiplier = 10.0f;
     private float speedMultiplier = 1f;
     public TextMeshProUGUI hitText;
+    public TextMeshProUGUI gameOverText;
 
     private bool isMovingForward = false;
     private bool isBoosting = false;
@@ -24,11 +25,17 @@ public class ArrowMovement : MonoBehaviour
     private void Start()
     {
         if (hitText != null) hitText.gameObject.SetActive(false);
+        if (gameOverText != null) gameOverText.gameObject.SetActive(false);
         arrow.GetComponent<Animator>().enabled = false;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
         if (!canMove)
             return;
         
@@ -76,7 +83,6 @@ public class ArrowMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Target")
         {
             if (hitText != null)
@@ -92,7 +98,16 @@ public class ArrowMovement : MonoBehaviour
 
         else if (other.gameObject.tag == "environment")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            gameOverText.gameObject.SetActive(true);
+            arrow.GetComponent<Animator>().enabled = false;
+            canMove = false;
+            speed = 0f;
+            isMovingForward = false;
+            isBoosting = false;
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 

@@ -1,0 +1,34 @@
+{
+    "name": "ArrowControls",
+    "maps": [
+        {
+            "name": "Arrow",
+            "id": "4ac7268c-15ae-47e3-abff-3c14771208dd",
+            "actions": [
+                {
+                    "name": "Boost",
+                    "type": "Button",
+                    "id": "a0806f6d-abc2-4503-af29-67056b90a50e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "df662279-8382-4321-8981-b01f0ff2f0c2",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

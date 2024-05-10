@@ -18,6 +18,7 @@ public class MusicPlayerGame : MonoBehaviour
 
     void Update()
     {
+        LoadVolume();
         gameSource.volume = musicVolume;
     }
 

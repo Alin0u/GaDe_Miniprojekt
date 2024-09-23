@@ -25,7 +25,6 @@ You are the arrow trying to hit the target. Use the arrow-keys on your keyboard 
 
 ## Authors
 Created by:
-- [@Edelmetall](https://github.com/Edelmetall) (sigrichi)
 - [@Alin0u](https://www.github.com/alin0u) (spangali)
 
 ## Contribution

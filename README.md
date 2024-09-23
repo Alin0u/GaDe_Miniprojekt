@@ -3,7 +3,7 @@
 #### Contents
 
 - [System Details](#system-details)
-- [GamePlay](#gamepkay)
+- [GamePlay](#gameplay)
 - [Authors](#authors)
 - [Terms of Use](#terms-of-use)
 
@@ -31,3 +31,4 @@ Created by:
 This project was created as part of the project work for the modul game developement at the Zurich University of Applied Sciences in Zurich.
 
 ## Terms of Use
+See [license file](LICENSE)
